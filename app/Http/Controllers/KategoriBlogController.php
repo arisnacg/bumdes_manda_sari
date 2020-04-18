@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\KategoriBlog;
+use App\Blog;
 use Illuminate\Http\Request;
 
 class KategoriBlogController extends Controller
@@ -60,7 +61,7 @@ class KategoriBlogController extends Controller
 
     public function destroy($id){
         $row = KategoriBlog::findOrFail($id);
-        UnitUsaha::where("id_jenis", $id)->delete();
+        Blog::where("id_kategori", $id)->delete();
         $nama = $row->nama;
         $row->delete();
         return redirect(route("kategori_blog.index"))

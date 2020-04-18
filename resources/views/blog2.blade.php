@@ -1,7 +1,7 @@
 @extends('app')
 
 @section("title")
-	{{ $unit_usaha->nama }} -
+	{{ $blog->judul }} -
 @endsection
 
 @section('content')
@@ -13,10 +13,10 @@
 					Beranda 
 				</a>
 				<a href="#" class="breadcrumb-item f1-s-3 cl9">
-					Usaha 
+					Blog 
 				</a>
 				<span class="breadcrumb-item f1-s-3 cl9">
-					{{ $unit_usaha->nama }}
+					{{ $blog->judul }}
 				</span>
 			</div>
 
@@ -27,53 +27,54 @@
 	</div>
 	<!-- Content -->
 	<section class="bg0 p-b-140 p-t-10">
+		
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-10 col-lg-8 p-b-30">
 					<div class="p-r-10 p-r-0-sr991">
-						<!-- Usaha Detail -->
-						<div class="p-b-70">
+						<!-- Blog Detail -->
+						{{-- <div class="p-b-70">
 							<a href="#" class="f1-s-10 cl2 hov-cl10 trans-03 text-uppercase">
-								{{ $unit_usaha->jenis->nama }}
+								{{ $blog->kategori->nama }}
 							</a>
 							<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2">
-								{{ $unit_usaha->nama }}
+								{{ $blog->judul }}
 							</h3>
 							@if(!Auth::guest())
 								@if(Auth::user()->id_jenis == 1)
 									<div class="text-left m-b-20">
-										<a href="{{ route("unit_usaha.deskripsi", ["id" => $unit_usaha->id]) }}" class="size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-											Edit Deskripsi
+										<a href="{{ route("blog.edit", ["id" => $blog->id]) }}" class="size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
+											Edit Blog
 										</a>
-										<a href="{{ route("unit_usaha.gambar", ["id" => $unit_usaha->id]) }}" class="size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
+										<a href="{{ route("blog.gambar", ["id" => $blog->id]) }}" class="size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
 											Ganti Gambar
 										</a>
 									</div>
 								@endif
 							@endif
 							<div class="wrap-pic-max-w p-b-30">
-								<img src="{{ asset("website/images/usaha/".$unit_usaha->gambar) }}" alt="IMG">
+								<img src="{{ asset("website/images/blog/".$blog->gambar) }}" alt="IMG">
 							</div>
 							<div class="flex-wr-s-s p-b-40">
 								<span class="f1-s-3 cl8 m-r-15">
 									<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-										oleh {{ $unit_usaha->penulis->nama }}
+										oleh {{ $blog->penulis->nama }}
 									</a>
 									<span class="m-rl-3">-</span>
 									<span>
-										Terbit {{ $unit_usaha->created_at->format("d M, Y") }}
+										Terbit {{ $blog->created_at->format("d M, Y") }}
 									</span>
 									<span class="m-l-10">
-										Update {{ $unit_usaha->updated_at->format("d M, Y") }}
+										Update {{ $blog->updated_at->format("d M, Y") }}
 									</span>
 								</span>
 								<span class="f1-s-3 cl8 m-r-15">
-									Dikunjungi {{ $unit_usaha->dikunjungi }}
+									Dikunjungi {{ $blog->dikunjungi }}
 								</span>
 							</div>
 							<!-- Deskripsi -->
 							<div class="deskripsi">
-								{!! $unit_usaha->deskripsi !!}
+								{!! $blog->isi !!}
 							</div>
 
 							<!-- Share -->
@@ -104,16 +105,12 @@
 									</a>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 				
 				<!-- Sidebar -->
-				<div class="col-md-10 col-lg-4 p-b-30">
-					<div class="p-l-10 p-rl-0-sr991 p-t-70">
-						@include("inc.sidebar")
-					</div>
-				</div>
+				@include("inc.sidebar")
 			</div>
 		</div>
 	</section>

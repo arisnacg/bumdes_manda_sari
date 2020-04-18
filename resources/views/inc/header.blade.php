@@ -275,7 +275,7 @@
 							</div>
 						</li>
 						<li>
-							<a href="#">Blog</a>
+							<a href="{{ route("page.daftar_blog") }}">Blog</a>
 						</li>
 						<li>
 							<a href="about.html">Tentang Kami</a>

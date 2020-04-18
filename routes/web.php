@@ -5,6 +5,8 @@ Route::get("/home", function(){
 	return redirect(route("dashboard"));
 });
 Route::get("/usaha/{url}", "PageController@unitUsaha")->name("page.unit_usaha");
+Route::get("/blog/{url}", "PageController@blog")->name("page.blog");
+Route::get("/daftar/blog", "PageController@daftarBlog")->name("page.daftar_blog");
 
 Auth::routes();
 
@@ -25,4 +27,6 @@ Route::group(["prefix" => "dashboard",  "middleware" => "auth"], function () {
 	Route::resource("kategori_blog", "KategoriBlogController")->names("kategori_blog");
 	//Blog
 	Route::resource("blog", "BlogController")->names("blog");
+	Route::get("blog/{id}/gambar", "BlogController@viewUpdateGambar")->name("blog.gambar");
+	Route::post("blog/{id}/gambar", "BlogController@updateGambar");
 });

@@ -34,29 +34,40 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 col-lg-5 p-b-20">
+				<div class="col-sm-6 col-lg-4 p-b-20">
 					<div class="size-h-3 flex-s-c">
 						<h5 class="f1-m-7 cl0">
-							Visi dan Misi
+							Postingan Popular
 						</h5>
 					</div>
-					<h6 class="text-white">Visi</h6>
-					<p class="f1-s-1 cl11">Mewujudkan Desa Bongkasa Pertiwi yang mandiri dan masyarakat sejahtera</p>
-					<h6 class="text-white m-t-10">Misi</h6>
 					<ul>
-						<li><p class="f1-s-1 cl11">Peningkatan perekonomian masyarakat Desa Bongkasa Pertiwi</p></li>
-						<li><p class="f1-s-1 cl11">Pemaanfaatan aset desa untuk kesejahteraan Desa Bongkasa Pertiwi</p></li>
-						<li><p class="f1-s-1 cl11">Peningkatan usaha masyarakat dalam pengelolaan potensi Desa Bongkasa Pertiwi</p></li>
-						<li><p class="f1-s-1 cl11">Menciptakan peluang dan jaringan pasar yang mendukung kebutuhan layanan umum warga Desa Bongkasa Pertiwi</p></li>
-						<li><p class="f1-s-1 cl11">Membuka lapangan kerja di Desa Bongkasa Pertiwi</p></li>
-						<li><p class="f1-s-1 cl11">Peningkatan kesejahteraan masyarakat melalui perbaikan pelayanan umum, pertumbuhan dan pemerataan ekonomi Desa Bongkasa Pertiwi</p></li>
-						<li><p class="f1-s-1 cl11">Peningkatan pendapatan masyarakat dan Pendapatan Asli Desa Bongkasa Pertiwi.</p></li>
+						@if(count($data["blog_populer"]))
+							@foreach($data["blog_populer"] as $e)
+								<li class="flex-wr-sb-s p-b-20">
+									<a href="{{ route("page.blog", ["url" => $e->url]) }}" class="size-w-4 wrap-pic-w hov1 trans-03">
+										<img src="{{ asset("website/images/blog/".$e->gambar) }}" alt="IMG">
+									</a>
+
+									<div class="size-w-5">
+										<h6 class="p-b-5">
+											<a href="{{ route("page.blog", ["url" => $e->url]) }}" class="f1-s-5 cl11 hov-cl10 trans-03">
+												{{ $e->judul }}
+											</a>
+										</h6>
+
+										<span class="f1-s-3 cl6">
+											Terbit {{ $e->created_at->format("d M, Y") }}
+										</span>
+									</div>
+								</li>
+							@endforeach
+						@endif
 					</ul>
 				</div>
-				<div class="col-sm-6 col-lg-3 p-b-20">
+				<div class="col-sm-6 col-lg-4 p-b-20">
 					<div class="size-h-3 flex-s-c">
 						<h5 class="f1-m-7 cl0">
-							Category
+							Jenis Usaha
 						</h5>
 					</div>
 					<ul class="m-t--12">
