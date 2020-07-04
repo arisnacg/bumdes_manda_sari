@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\UnitUsaha;
 use App\JenisUnitUsaha;
-
+use File;
 use Auth;
 
 class UnitUsahaController extends Controller
 {
 
 	public $dirGambar = "website/images/usaha/";
+    public $namaDefault = "default.jpg";
 
     public function index(){
     	$data = UnitUsaha::with("jenis")
@@ -63,6 +64,7 @@ class UnitUsahaController extends Controller
     public function destroy($id){
         $row = UnitUsaha::find($id);
         $nama = $row->nama;
+        File::delete($this->dirGambar.$row->gambar);
         $row->delete();
         return redirect(route("unit_usaha.index"))
             ->with("success", "Unit Usaha : <b>".$nama."</b> berhasil dihapus");
@@ -93,7 +95,9 @@ class UnitUsahaController extends Controller
 
     public function updateGambar(Request $req, $id){
     	$row = UnitUsaha::findOrFail($id);
-
+        if($row->gambar != $this->namaDefault){
+            File::delete($this->dirGambar.$row->gambar);
+        }
     	$folderPath = public_path($this->dirGambar);
         $image_parts = explode(";base64,", $req->image);
         $image_type_aux = explode("image/", $image_parts[0]);

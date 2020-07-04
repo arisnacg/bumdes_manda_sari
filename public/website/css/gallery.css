@@ -1,0 +1,49 @@
+/* external css: flickity.css */
+
+* { box-sizing: border-box; }
+
+/* MAIN */
+
+.carousel-main {
+  margin-bottom: 40px;
+}
+
+..carousel-main .carousel-cell {
+  width: 66%;
+  height: 200px;
+  margin-right: 10px;
+  background: #333;
+}
+
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel-main img {
+  display: block;
+  height: 400px;
+}
+
+/*NAV*/
+
+.carousel-nav {
+  background: #fff;
+}
+
+.carousel-nav .carousel-cell {
+  height: 70px;
+  width: 110px;
+}
+
+.carousel-nav img {
+  display: block;
+  height: 70px;
+  opacity: 0.5
+}
+
+.carousel-nav .carousel-cell.is-nav-selected img {
+  opacity: 1;
+}
+
+

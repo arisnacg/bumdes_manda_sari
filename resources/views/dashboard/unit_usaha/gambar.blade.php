@@ -25,7 +25,7 @@
                                         <span class="btn-label"><i class=" zmdi zmdi-eye"></i></span> Preview Halaman
                                     </a>
                                     <button class="btn btn-info waves-effect waves-light" id="btnGambar" type="button">
-                                        <span class="btn-label"><i class="zmdi zmdi-image"></i></span> Ganti Gambar
+                                        <span class="btn-label"><i class="zmdi zmdi-image"></i></span> Pilih Gambar
                                     </button>
                                     <button id="uploadGambar" class="btn btn-success waves-effect waves-light" type="button">
                                         <span class="btn-label"><i class=" zmdi zmdi-save"></i></span> Simpan Gambar

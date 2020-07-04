@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="headline bg0 flex-wr-sb-c p-rl-20 p-tb-8">
 			<div class="f2-s-1 p-r-30 m-tb-6">
-				<a href="index.html" class="breadcrumb-item f1-s-3 cl9">
+				<a href="/" class="breadcrumb-item f1-s-3 cl9">
 					Beranda 
 				</a>
 				<a href="{{ route("page.daftar_blog") }}" class="breadcrumb-item f1-s-3 cl9">
@@ -20,9 +20,14 @@
 				</span>
 			</div>
 
-			<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">
-				@include("inc.search_bar")
-			</div>
+			<form method="GET" action="{{ route("page.daftar_blog") }}">
+				<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">
+					<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" name="search" placeholder="Search">
+					<button type="submit" class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	<!-- Content -->
@@ -82,7 +87,7 @@
 							</div>
 
 							<!-- Tag -->
-							<div class="flex-s-s p-t-12 p-b-15">
+							{{-- <div class="flex-s-s p-t-12 p-b-15">
 								<span class="f1-s-12 cl5 m-r-8">
 									Tags:
 								</span>
@@ -96,10 +101,16 @@
 										Crafts
 									</a>
 								</div>
-							</div>
+							</div> --}}
 
 							<!-- Share -->
-							<div class="flex-s-s">
+							<div class="flex-s-s m-t-40">
+								<span class="f1-s-12 cl5 p-t-1 m-r-15">
+									Share:
+								</span>
+								{!! Share::currentPage($blog->judul, [], '', '')->facebook()->twitter()->whatsapp()->telegram() !!}
+							</div>
+							{{-- <div class="flex-s-s m-t-40">
 								<span class="f1-s-12 cl5 p-t-1 m-r-15">
 									Share:
 								</span>
@@ -125,7 +136,7 @@
 										Pinterest
 									</a>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -138,4 +149,8 @@
 			</div>
 		</div>
 	</section>
+@endsection
+
+@section("js")
+	<script src="{{ asset('js/share.js') }}"></script>
 @endsection

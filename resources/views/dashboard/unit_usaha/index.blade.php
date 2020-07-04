@@ -54,6 +54,7 @@
                                                 <ul role="menu" class="dropdown-menu">
                                                     <li><a href="{{ route("unit_usaha.deskripsi", ["id" => $row->id]) }}">Deskripsi</a></li>
                                                     <li><a href="{{ route("unit_usaha.gambar", ["id" => $row->id]) }}">Gambar</a></li>
+                                                    <li><a href="{{ route("gallery_usaha.gallery", ["id_unit_usaha" => $row->id]) }}">Gallery</a></li>
                                                 </ul>
                                             </div>            
                                             <a href="{{ route('unit_usaha.edit', ['id' => $row->id]) }}" class="btn btn-warning waves-effect waves-light">

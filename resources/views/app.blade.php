@@ -23,6 +23,7 @@
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="{{  asset("website/css/main.css") }}">
 <!--===============================================================================================-->
+	@yield("css")
 </head>
 <body class="animsition">
 	
@@ -45,6 +46,6 @@
 	<script src="{{ asset("website/vendor/bootstrap/js/bootstrap.min.js") }}"></script>
 <!--===============================================================================================-->
 	<script src="{{ asset("website/js/main.js") }}"></script>
-
+	@yield("js")
 </body>
 </html>

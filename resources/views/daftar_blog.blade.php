@@ -1,4 +1,16 @@
 @extends('app')
+
+@section("title")
+	@if($req->search)
+		Hasil pencarian untuk "{{ $req->search }}"
+	@elseif($kategori_blog)
+		{{ $kategori_blog->nama }}
+	@else
+		Blog
+	@endif
+	 - 
+@endsection
+
 @section('content')
 		
 	<!-- Breadcrumb -->
@@ -28,6 +40,8 @@
 	<div class="container p-t-4 p-b-40">
 		@if($req->search)
 			<h5 class="f1-l-1 cl2" style="font-size: 24px"> Hasil pencarian untuk <span class="text-success">{{ $req->search }}</span></h5>
+		@elseif($kategori_blog)
+			<h5 class="f1-l-1 cl2" style="font-size: 24px"><span class="text-success">{{ $kategori_blog->nama }}</span></h5>
 		@else
 			<h2 class="f1-l-1 cl2">Blog</h2>
 		@endif

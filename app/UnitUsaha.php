@@ -23,6 +23,10 @@ class UnitUsaha extends Model
     	return $this->belongsTo("App\User", "id_penulis");
     }
 
+    public function gallery(){
+        return $this->hasMany("App\GalleryUsaha", "id_unit_usaha");
+    }
+
     public function convertNamatoUrl(){
     	$this->update(["url" => preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', strtolower($this->nama)))]);
     }

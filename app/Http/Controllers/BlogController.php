@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Blog;
 use App\KategoriBlog;
-
+use File;
 use Auth;
 
 class BlogController extends Controller
 {
     public $dirGambar = "website/images/blog/";
+    public $namaDefault = "default.jpg";
 
     public function index(){
     	$data = Blog::with("kategori")
@@ -82,6 +83,7 @@ class BlogController extends Controller
     public function destroy($id){
         $row = Blog::find($id);
         $nama = $row->nama;
+        File::delete($this->dirGambar.$row->gambar);
         $row->delete();
         return redirect(route("blog.index"))
             ->with("success", "Unit Usaha : <b>".$nama."</b> berhasil dihapus");
@@ -112,7 +114,9 @@ class BlogController extends Controller
 
     public function updateGambar(Request $req, $id){
     	$row = Blog::findOrFail($id);
-
+        if($row->gambar != $this->namaDefault){
+            File::delete($this->dirGambar.$row->gambar);
+        }
     	$folderPath = public_path($this->dirGambar);
         $image_parts = explode(";base64,", $req->image);
         $image_type_aux = explode("image/", $image_parts[0]);

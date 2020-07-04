@@ -36,24 +36,36 @@
 				<span class="hide-menu">Dashboard</span></a>
 			</li>
 			<li>
-				<a href="javascript:void(0)" class="waves-effect"><i class=" zmdi zmdi-assignment-o zmdi-hc-fw fa-fw"></i>
+				<a href="javascript:void(0)" class="waves-effect"><i class="zmdi zmdi-collection-case-play zmdi-hc-fw fa-fw"></i>
 					<span class="hide-menu">Kelola Usaha<span class="fa arrow"></span></span>
 				</a>
 				<ul class="nav nav-second-level">
-					<li><a href="{{ route('jenis_unit_usaha.index') }}"><i class="zmdi zmdi-card-travel zmdi-hc-fw fa-fw"></i> Jenis Usaha</a></li>
-					<li><a href="{{ route('unit_usaha.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw fa-fw"></i>Usaha</a></li>
+					<li><a href="{{ route('jenis_unit_usaha.index') }}"><i class="zmdi zmdi-case zmdi-hc-fw fa-fw"></i> Jenis Usaha</a></li>
+					<li><a href="{{ route('unit_usaha.index') }}"><i class="zmdi zmdi-case-play zmdi-hc-fw fa-fw"></i>Usaha</a></li>
 				</ul>
 			</li>
 			<li>
-				<a href="javascript:void(0)" class="waves-effect"><i class=" zmdi zmdi-assignment-o zmdi-hc-fw fa-fw"></i>
+				<a href="javascript:void(0)" class="waves-effect"><i class=" zmdi zmdi-receipt zmdi-hc-fw fa-fw"></i>
+					<span class="hide-menu">Kelola Kerja Sama<span class="fa arrow"></span></span>
+				</a>
+				<ul class="nav nav-second-level">
+					<li><a href="{{ route('kerjasama.index') }}"><i class="zmdi zmdi-receipt zmdi-hc-fw fa-fw"></i>Kerja Sama</a></li>
+					<li><a href="{{ route('program.index') }}"><i class="zmdi zmdi-file-text zmdi-hc-fw fa-fw"></i>Program</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:void(0)" class="waves-effect"><i class="zmdi zmdi-book zmdi-hc-fw fa-fw"></i>
 					<span class="hide-menu">Kelola Blog<span class="fa arrow"></span></span>
 				</a>
 				<ul class="nav nav-second-level">
-					<li><a href="{{ route('kategori_blog.index') }}"><i class="zmdi zmdi-card-travel zmdi-hc-fw fa-fw"></i>Kategori Blog</a></li>
-					<li><a href="{{ route('blog.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw fa-fw"></i>Blog</a></li>
+					<li><a href="{{ route('kategori_blog.index') }}"><i class="zmdi zmdi-file zmdi-hc-fw fa-fw"></i>Kategori Blog</a></li>
+					<li><a href="{{ route('blog.index') }}"><i class="zmdi zmdi-file-text zmdi-hc-fw fa-fw"></i>Blog</a></li>
 				</ul>
 			</li>
-			<li>
+			<li><a href="{{ route("webpage") }}" class="waves-effect">
+				<i class="zmdi zmdi-globe zmdi-hc-fw fa-fw"></i>
+				<span class="hide-menu">Halaman Web</span></a>
+			</li>
 		</ul>
 	</div>
 </div>

@@ -5,29 +5,21 @@
 		<div class="topbar">
 			<div class="content-topbar container h-100">
 				<div class="left-topbar">
-					<!-- <span class="left-topbar-item flex-wr-s-c">
-			<span>
-			  New York, NY
-			</span>
-
-			<img class="m-b-1 m-rl-8" src="images/icons/icon-night.png" alt="IMG">
-
-			<span>
-			  HI 58° LO 56°
-			</span>
-		  </span> -->
-
-					<a href="about.html" class="left-topbar-item">
+					<a href="{{ route("about") }}" class="left-topbar-item">
 						Tentang Kami
 					</a>
-
 					<a href="#" class="left-topbar-item">
 						Kontak
 					</a>
-
-					<a href="{{ route("login") }}" class="left-topbar-item">
-						Log in
-					</a>
+					@if(Auth::guest())
+						<a href="{{ route("login") }}" class="left-topbar-item">
+							Log in
+						</a>
+					@else
+						<a href="{{ route("dashboard") }}" class="left-topbar-item">
+							Halaman Dashboard
+						</a>
+					@endif
 				</div>
 
 				<div class="right-topbar">
@@ -58,7 +50,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="{{ asset("website/images/icons/logo-01.png") }}" alt="IMG-LOGO"></a>
+				<a href="/"><img src="{{ asset("website/images/icons/logo-01.png") }}" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Button show menu -->
@@ -73,33 +65,11 @@
 		<div class="menu-mobile">
 			<ul class="topbar-mobile">
 				<li class="left-topbar">
-					<!-- <span class="left-topbar-item flex-wr-s-c">
-			<span>
-			  New York, NY
-			</span>
-
-			<img class="m-b-1 m-rl-8" src="images/icons/icon-night.png" alt="IMG">
-
-			<span>
-			  HI 58° LO 56°
-			</span>
-		  </span> -->
-				</li>
-
-				<li class="left-topbar">
-					<a href="#" class="left-topbar-item">
-						About
+					<a href="{{ route("about") }}" class="left-topbar-item">
+						Tentang Kami
 					</a>
 
-					<a href="#" class="left-topbar-item">
-						Contact
-					</a>
-
-					<a href="#" class="left-topbar-item">
-						Sing up
-					</a>
-
-					<a href="#" class="left-topbar-item">
+					<a href="{{ route("login") }}" class="left-topbar-item">
 						Log in
 					</a>
 				</li>
@@ -129,50 +99,30 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Beranda</a>
+					<a href="/">Beranda</a>
 				</li>
 
 				<li>
-					<a href="category-01.html">unitusaha</a>
+					<a href="{{ route("page.daftar_usaha") }}">Usaha</a>
 				</li>
-
 				<li>
-					<a href="category-02.html">Entertainment </a>
-				</li>
-
-				<li>
-					<a href="category-01.html">Business</a>
-				</li>
-
-				<li>
-					<a href="category-02.html">Travel</a>
-				</li>
-
-				<li>
-					<a href="category-01.html">Life Style</a>
-				</li>
-
-				<li>
-					<a href="category-02.html">Video</a>
-				</li>
-
-				<li>
-					<a href="#">Features</a>
+					<a href="#">Kerja Sama</a>
 					<ul class="sub-menu-m">
-						<li><a href="category-01.html">Category Page v1</a></li>
-						<li><a href="category-02.html">Category Page v2</a></li>
-						<li><a href="blog-grid.html">Blog Grid Sidebar</a></li>
-						<li><a href="blog-list-01.html">Blog List Sidebar v1</a></li>
-						<li><a href="blog-list-02.html">Blog List Sidebar v2</a></li>
-						<li><a href="blog-detail-01.html">Blog Detail Sidebar</a></li>
-						<li><a href="blog-detail-02.html">Blog Detail No Sidebar</a></li>
-						<li><a href="about.html">About Us</a></li>
-						<li><a href="contact.html">Contact Us</a></li>
+						@foreach($data["kerjasama"] as $e_kerjasama)
+							<li><a href="{{ route("page.kerjasama", ["id" => $e_kerjasama->id]) }}">{{ $e_kerjasama }}</a></li>
+						@endforeach
 					</ul>
-
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
+				</li>
+
+				<li>
+					<a href="{{ route("page.daftar_usaha") }}">Blog</a>
+				</li>
+
+				<li>
+					<a href="{{ route("about") }}">Tentang Kami</a>
 				</li>
 			</ul>
 		</div>
@@ -181,7 +131,7 @@
 		<div class="wrap-logo no-banner container">
 			<!-- Logo desktop -->
 			<div class="logo">
-				<a href="index.html"><img src="{{ asset("website/images/icons/logo-01.png") }}" alt="LOGO"></a>
+				<a href="/"><img src="{{ asset("website/images/icons/logo-01.png") }}" alt="LOGO"></a>
 			</div>
 		</div>
 
@@ -190,16 +140,16 @@
 			<div class="main-nav">
 				<!-- Menu desktop -->
 				<nav class="menu-desktop">
-					<a class="logo-stick" href="index.html">
+					<a class="logo-stick" href="/">
 						<img src="{{ asset("website/images/icons/logo-01.png") }}" alt="LOGO">
 					</a>
 
 					<ul class="main-menu justify-content-center">
-						<li class="main-menu-active">
-							<a href="index.html">Beranda</a>
+						<li class="{{ Request::is('/') ? 'main-menu-active' : '' }}">
+							<a href="/">Beranda</a>
 						</li>
 
-						<li class="mega-menu-item">
+						<li class="mega-menu-item {{ Route::is('page.usaha') ? 'main-menu-active' : '' }}">
 							<a href="#" class="with-sub">Usaha</a>
 
 							<div class="sub-mega-menu">
@@ -275,10 +225,21 @@
 							</div>
 						</li>
 						<li>
+							<a href="#" class="with-sub">Kerja Sama</a>
+							<ul class="sub-menu">
+								@foreach($data["kerjasama"] as $e_kerjasama)
+									<li><a href="{{ route("page.kerjasama", ["id" => $e_kerjasama->id]) }}">{{ $e_kerjasama->nama }}</a></li>
+								@endforeach
+							</ul>
+							<span class="arrow-main-menu-m">
+								<i class="fa fa-angle-right" aria-hidden="true"></i>
+							</span>
+						</li>
+						<li class="{{ Route::is('page.daftar_blog') ? 'main-menu-active' : '' }}">
 							<a href="{{ route("page.daftar_blog") }}">Blog</a>
 						</li>
-						<li>
-							<a href="about.html">Tentang Kami</a>
+						<li class="{{ Route::is('about') ? 'main-menu-active' : '' }}">
+							<a href="{{ route("about") }}">Tentang Kami</a>
 						</li>
 					</ul>
 				</nav>

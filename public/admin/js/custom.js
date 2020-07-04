@@ -1,4 +1,38 @@
 $(document).ready(function () {
+    //Anggota Program
+    $(".btn-delete-aanggota-program").click(function () {
+        let button = $(this)
+        Swal({
+            title: "Anda Yakin?",
+            text: "Data anggota ini akan terhapus secara permanen",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "Tidak",
+            confirmButtonColor: "#ea6554",
+            confirmButtonText: "Ya, lanjutkan!"
+        }).then(function (result) {
+            if (result.value) {
+                $("#formDelete" + button.data("id")).submit()
+            }
+        });
+    })
+    //Program
+    $(".btn-delete-program").click(function () {
+        let button = $(this)
+        Swal({
+            title: "Anda Yakin?",
+            text: "Artikel program ini akan terhapus secara permanen",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "Tidak",
+            confirmButtonColor: "#ea6554",
+            confirmButtonText: "Ya, lanjutkan!"
+        }).then(function (result) {
+            if (result.value) {
+                $("#formDelete" + button.data("id")).submit()
+            }
+        });
+    })
     //Kategori Blog
     $(".btn-delete-kategori-blog").click(function () {
         let button = $(this)

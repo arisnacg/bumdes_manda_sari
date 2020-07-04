@@ -6,7 +6,7 @@
 			 class="ti-menu"></i></a>
 		<!-- Logo -->
 		<div class="top-left-part">
-			<a class="logo" href="index.html">
+			<a class="logo" href="{{ route("dashboard") }}">
 				<!-- Logo icon image, you can use font-icon also -->
 				<b><img src="{{ asset('admin/img/eliteadmin-logo.png') }}" alt="home" /></b>
 				<!-- Logo text image you can use text also -->

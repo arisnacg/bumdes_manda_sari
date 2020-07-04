@@ -2,7 +2,7 @@
 	<div class="bg2 p-t-40 p-b-25">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 p-b-20">
+				<div class="col-sm-12 col-md-4 col-lg-4 p-b-20">
 					<div class="size-h-3 flex-s-c">
 						<a href="index.html">
 							<img class="max-s-full" src="{{ asset("website/images/icons/logo-01.png") }}" alt="LOGO">
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 col-lg-4 p-b-20">
+				<div class="col-sm-12 col-md-4 col-lg-4 p-b-20">
 					<div class="size-h-3 flex-s-c">
 						<h5 class="f1-m-7 cl0">
 							Postingan Popular
@@ -64,7 +64,7 @@
 						@endif
 					</ul>
 				</div>
-				<div class="col-sm-6 col-lg-4 p-b-20">
+				<div class="col-sm-12 col-md-4 col-lg-4 p-b-20">
 					<div class="size-h-3 flex-s-c">
 						<h5 class="f1-m-7 cl0">
 							Jenis Usaha
@@ -75,7 +75,7 @@
 							@foreach($data["jenis_unit_usaha"] as $jenis_unit_usaha)
 								<li class="how-bor1 p-rl-5 p-tb-10">
 									<a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
-										Unit Usaha {{ $jenis_unit_usaha->nama }} ({{ count($jenis_unit_usaha->unit_usaha) }})
+										{{ $jenis_unit_usaha->nama }} ({{ count($jenis_unit_usaha->unit_usaha) }})
 									</a>
 								</li>
 							@endforeach

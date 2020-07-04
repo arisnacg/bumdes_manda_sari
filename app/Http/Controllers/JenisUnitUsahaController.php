@@ -45,7 +45,7 @@ class JenisUnitUsahaController extends Controller
             "nama" => "required|string",
         ]);
 
-        $num = JenisUnitUsaha::where("nama", $req->nama)->count();
+        $num = JenisUnitUsaha::where("nama", $req->nama)->where("id","!=", $id)->count();
         if($num){
             return redirect()->back()
             ->withInput()
