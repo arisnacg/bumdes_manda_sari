@@ -12,8 +12,8 @@
 				<a href="/" class="breadcrumb-item f1-s-3 cl9">
 					Beranda 
 				</a>
-				<a href="{{ route("page.daftar_blog") }}" class="breadcrumb-item f1-s-3 cl9">
-					Artikel
+				<a href="{{ route("page.kerjasama", ["id_kerjasama" => $program->kerjasama->id]) }}" class="breadcrumb-item f1-s-3 cl9">
+					{{$program->kerjasama->nama }}
 				</a>
 				<span class="breadcrumb-item f1-s-3 cl9">
 					{{$program->judul }}
@@ -86,29 +86,19 @@
 								{!!$program->isi !!}
 							</div>
 
-							<!-- Tag -->
-							{{-- <div class="flex-s-s p-t-12 p-b-15">
-								<span class="f1-s-12 cl5 m-r-8">
-									Tags:
-								</span>
-								
-								<div class="flex-wr-s-s size-w-0">
-									<a href="#" class="f1-s-12 cl8 hov-link1 m-r-15">
-										Streetstyle
-									</a>
-
-									<a href="#" class="f1-s-12 cl8 hov-link1 m-r-15">
-										Crafts
-									</a>
-								</div>
-							</div> --}}
-
 							<h1 class="text-center anggota-title">ANGGOTA</h1>
-							<div class="daftar-anggota flex-wrap d-flex justify-content-around">
-								@if(false)
+							@if(count($program->anggota))
+								<div class="row d-flex justify-content-center m-t-20">
+									<div class="col-sm-12 col-md-8">
+										<input type="text" class="form-control" id="cariAnggota" placeholder="Cari nama anggota..">
+									</div>
+								</div>
+							@endif
+							<div class="daftar-anggota flex-wrap d-flex justify-content-around" id="anggotaContainer">
+								@if(count($program->anggota))
 									@foreach($program->anggota as $anggota)
 										<div class="anggota">
-											<a href="#">
+											<a href="{{ route("page.program.anggota", ["id" => $anggota->id]) }}">
 		                                        <img class="img-circle img-thumbnail" width="80" src="{{ asset("website/images/anggota_program/".$anggota->foto) }}" alt="IMG">
 		                                        <h4 class="nama-anggota">{{ $anggota->nama }}</h4>
 		                                    </a>
@@ -125,33 +115,6 @@
 								</span>
 								{!! Share::currentPage($program->judul, [], '', '')->facebook()->twitter()->whatsapp()->telegram() !!}
 							</div>
-							{{-- <div class="flex-s-s m-t-40">
-								<span class="f1-s-12 cl5 p-t-1 m-r-15">
-									Share:
-								</span>
-								
-								<div class="flex-wr-s-s size-w-0">
-									<a href="#" class="dis-block f1-s-13 cl0 bg-facebook borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
-										<i class="fab fa-facebook-f m-r-7"></i>
-										Facebook
-									</a>
-
-									<a href="#" class="dis-block f1-s-13 cl0 bg-twitter borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
-										<i class="fab fa-twitter m-r-7"></i>
-										Twitter
-									</a>
-
-									<a href="#" class="dis-block f1-s-13 cl0 bg-google borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
-										<i class="fab fa-google-plus-g m-r-7"></i>
-										Google+
-									</a>
-
-									<a href="#" class="dis-block f1-s-13 cl0 bg-pinterest borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
-										<i class="fab fa-pinterest-p m-r-7"></i>
-										Pinterest
-									</a>
-								</div>
-							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -168,4 +131,31 @@
 
 @section("js")
 	<script src="{{ asset('js/share.js') }}"></script>
+	<script>
+		
+		let cariAnggota = "";
+		let urlImg = `{!! asset("website/images/anggota_program/") !!}`;
+		let anggota = {!! json_encode($program->anggota) !!}
+
+		function refreshAnggota(){
+			let anggotaHtml = "";
+			anggota.forEach(e => {
+				if(e.nama.toLowerCase().includes(cariAnggota.toLowerCase())){
+					anggotaHtml += `<div class="anggota">
+										<a href="/program/anggota/${e.id}">
+	                                        <img class="img-circle img-thumbnail" width="80" src="${urlImg+"/"+e.foto}" alt="IMG">
+	                                        <h4 class="nama-anggota">${e.nama}</h4>
+	                                    </a>
+									</div>`
+				}
+			});
+			$("#anggotaContainer").html(anggotaHtml)
+		}
+
+		$("#cariAnggota").keyup(function(e){
+			cariAnggota = this.value
+			refreshAnggota()
+		})
+
+	</script>
 @endsection

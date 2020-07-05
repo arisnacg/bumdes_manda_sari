@@ -12,14 +12,16 @@ Route::get("usaha/{url}", "PageController@unitUsaha")->name("page.unit_usaha");
 Route::get("blog/{url}", "PageController@blog")->name("page.blog");
 Route::get("daftar/blog", "PageController@daftarBlog")->name("page.daftar_blog");
 Route::get("daftar/usaha", "PageController@daftarUsaha")->name("page.daftar_usaha");
-Route::get("program/{id}/anggota", "PageController@anggotaProgram")->name("page.program.anggota");
+Route::get("program/anggota/{id}", "PageController@anggotaProgram")->name("page.program.anggota");
 Route::get("program/{url}", "PageController@program")->name("page.program");
-Route::get("kerjasama/{id}", "PageController@kerjasama")->name("page.kerjasama");
+Route::get("kerjasama", "PageController@kerjasama")->name("page.kerjasama");
 
 Auth::routes();
 
 Route::group(["prefix" => "dashboard",  "middleware" => "auth"], function () {
 	Route::get("/", "DashboardController@index")->name("dashboard");
+	Route::get("/ganti-password", "DashboardController@gantiPassword")->name("ganti_password");
+	Route::post("/ganti-password", "DashboardController@updatePassword");
 	/////////////////////////////////////////////////////////////////////////////////////
 	//CRUD
 

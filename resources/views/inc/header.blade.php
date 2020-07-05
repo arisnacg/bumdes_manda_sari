@@ -224,16 +224,52 @@
 								</div>
 							</div>
 						</li>
-						<li>
+						<li class="mega-menu-item {{ Route::is('page.kerjasama') ? 'main-menu-active' : '' }}">
 							<a href="#" class="with-sub">Kerja Sama</a>
-							<ul class="sub-menu">
-								@foreach($data["kerjasama"] as $e_kerjasama)
-									<li><a href="{{ route("page.kerjasama", ["id" => $e_kerjasama->id]) }}">{{ $e_kerjasama->nama }}</a></li>
-								@endforeach
-							</ul>
-							<span class="arrow-main-menu-m">
-								<i class="fa fa-angle-right" aria-hidden="true"></i>
-							</span>
+
+							<div class="sub-mega-menu">
+								<div class="nav flex-column nav-pills" role="tablist">
+									@if(count($data["kerjasama"]))
+										@foreach($data["kerjasama"] as $i => $kerjasama)
+											<a class="nav-link @if($i == 0) active @endif" data-toggle="pill" href="#program-{{ $kerjasama->id }}"
+												role="tab">
+												{{ $kerjasama->nama }}
+											</a>
+										@endforeach
+									@endif
+								</div>
+
+								<div class="tab-content">
+									@if(count($data["kerjasama"]))
+										@foreach($data["kerjasama"] as $i => $kerjasama)
+											@if(count($kerjasama->program))
+												<div class="tab-pane show @if($i == 0) active @endif" id="program-{{ $kerjasama->id }}" role="tabpanel">
+													<div class="row">
+														@foreach($kerjasama->program as $program)
+															<div class="col-3">
+																<!-- Item post -->	
+																<div>
+																	<a href="{{ route("page.program", ["url" => $program->url]) }}" class="wrap-pic-w hov1 trans-03">
+																		<img src="{{ asset("website/images/program/".$program->gambar) }}" alt="IMG">
+																	</a>
+			
+																	<div class="p-t-10">
+																		<h5 class="p-b-5">
+																			<a href="{{ route("page.program", ["url" => $program->url]) }}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																				{{ $program->judul }}
+																			</a>
+																		</h5>
+																	</div>
+																</div>
+															</div>
+														@endforeach
+													</div>
+												</div>
+											@endif
+										@endforeach
+									@endif
+								</div>
+							</div>
 						</li>
 						<li class="{{ Route::is('page.daftar_blog') ? 'main-menu-active' : '' }}">
 							<a href="{{ route("page.daftar_blog") }}">Blog</a>

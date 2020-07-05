@@ -95,12 +95,43 @@ class PageController extends Controller
         return view("unit_usaha", compact("unit_usaha", "data"));
     }
 
-    //blog
+    //kerjasama
+    public function kerjasama(Request $req){
+        $data = $this->dataHalaman();
+        $kerjasama = null;
+
+        $daftar_program = Program::with(["penulis", "kerjasama"]);
+        if($req->id_kerjasama){
+            $daftar_program->where("id_kerjasama", $req->id_kerjasama);
+            $kerjasama = Kerjasama::find($req->id_kerjasama);
+        }
+        if($req->search){
+            $daftar_program->where("judul", "like", "%".$req->search."%");
+        }
+        $daftar_program->orderBy("created_at", "desc");
+        $daftar_program = $daftar_program->simplePaginate(10);
+        $daftar_program->appends(Input::except('page'));
+        return view("daftar_program", compact("data", "daftar_program", "req", "kerjasama"));
+    }
+
+    //program
     public function program(Request $req, $url){
         $data = $this->dataHalaman();
         $program = Program::with(["kerjasama", "penulis", "anggota"])->where("url", $url)->first() or abort(404);
         $program->update(["dikunjungi" => $program->dikunjungi + 1]);
         return view("program", compact("program", "data"));
+    }
+
+    //anggota program
+    public function anggotaProgram(Request $req, $id){
+        $data = $this->dataHalaman();
+        $anggota = AnggotaProgram::with([
+            "program" => function($q){
+                $q->with("kerjasama");
+            }
+        ])
+        ->findOrFail($id);
+        return view("anggota_program", compact("anggota", "req", "data"));
     }
 
     //data halaman
@@ -110,7 +141,7 @@ class PageController extends Controller
         $data["kategori_blog"] = KategoriBlog::all();
         $data["blog_populer"] = Blog::with("kategori")->orderBy("dikunjungi", "desc")->take(3)->get();
         $data["informasi"] = Informasi::first();
-        $data["kerjasama"] = Kerjasama::all();
+        $data["kerjasama"] = Kerjasama::with("program")->get();
         $data["arsip"] = Blog::selectRaw('year(created_at) year, month(created_at) month, count(*) data')
             ->groupBy('year', 'month')
             ->orderBy('year', 'desc')

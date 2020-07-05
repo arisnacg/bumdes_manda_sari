@@ -63,7 +63,7 @@
 
 									<div class="p-t-16">
 										<h5 class="p-b-5">
-											<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
+											<a href="{{ route("page.unit_usaha", ["url" => $unit_usaha->url]) }}" class="f1-m-3 cl2 hov-cl10 trans-03">
 												{{ $unit_usaha->nama }}
 											</a>
 										</h5>

@@ -1,42 +1,4 @@
 
-<!-- Category Blog -->
-<div class="p-b-60">
-	<div class="how2 how2-cl4 flex-s-c">
-		<h3 class="f1-m-2 cl3 tab01-title">
-			Jenis Usaha
-		</h3>
-	</div>
-
-	<ul class="p-t-35">
-		@foreach($data["jenis_unit_usaha"] as $e)
-			<li class="how-bor3 p-rl-4">
-				<a href="{{ route("page.daftar_usaha", ["id_jenis" => $e->id]) }}" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
-					{{ $e->nama }}
-				</a>
-			</li>
-		@endforeach
-	</ul>
-</div>
-				
-<!-- Category Blog -->
-<div class="p-b-60">
-	<div class="how2 how2-cl4 flex-s-c">
-		<h3 class="f1-m-2 cl3 tab01-title">
-			Kategori Blog
-		</h3>
-	</div>
-
-	<ul class="p-t-35">
-		@foreach($data["kategori_blog"] as $e)
-		<li class="how-bor3 p-rl-4">
-			<a href="{{ route("page.daftar_blog", ["id_kategori" => $e->id]) }}" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
-				{{ $e->nama }}
-			</a>
-		</li>
-		@endforeach
-	</ul>
-</div>
-
 <!-- Popular Posts -->
 <div class="p-b-30">
 	<div class="how2 how2-cl4 flex-s-c">
@@ -77,6 +39,63 @@
 				</li>
 			@endforeach
 		@endif
+	</ul>
+</div>
+
+<!-- Category Blog -->
+<div class="p-b-60">
+	<div class="how2 how2-cl4 flex-s-c">
+		<h3 class="f1-m-2 cl3 tab01-title">
+			Jenis Usaha
+		</h3>
+	</div>
+
+	<ul class="p-t-35">
+		@foreach($data["jenis_unit_usaha"] as $e)
+			<li class="how-bor3 p-rl-4">
+				<a href="{{ route("page.daftar_usaha", ["id_jenis" => $e->id]) }}" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
+					{{ $e->nama }}
+				</a>
+			</li>
+		@endforeach
+	</ul>
+</div>
+
+<!-- Category Blog -->
+{{-- <div class="p-b-60">
+	<div class="how2 how2-cl4 flex-s-c">
+		<h3 class="f1-m-2 cl3 tab01-title">
+			Kerja Sama
+		</h3>
+	</div>
+
+	<ul class="p-t-35">
+		@foreach($data["kerjasama"] as $e)
+			<li class="how-bor3 p-rl-4">
+				<a href="{{ route("page.kerjasama", ["id_kerjasama" => $e->id]) }}" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
+					{{ $e->nama }}
+				</a>
+			</li>
+		@endforeach
+	</ul>
+</div> --}}
+				
+<!-- Category Blog -->
+<div class="p-b-60">
+	<div class="how2 how2-cl4 flex-s-c">
+		<h3 class="f1-m-2 cl3 tab01-title">
+			Kategori Blog
+		</h3>
+	</div>
+
+	<ul class="p-t-35">
+		@foreach($data["kategori_blog"] as $e)
+		<li class="how-bor3 p-rl-4">
+			<a href="{{ route("page.daftar_blog", ["id_kategori" => $e->id]) }}" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
+				{{ $e->nama }}
+			</a>
+		</li>
+		@endforeach
 	</ul>
 </div>
 

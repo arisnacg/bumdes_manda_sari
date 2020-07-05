@@ -3,8 +3,8 @@
 @section("title")
 	@if($req->search)
 		Hasil pencarian untuk "{{ $req->search }}"
-	@elseif($program)
-		{{ $program->nama }}
+	@elseif($anggota)
+		{{ $anggota->nama }}
 	@endif
 	 - 
 @endsection
@@ -18,11 +18,11 @@
 				<a href="/" class="breadcrumb-item f1-s-3 cl9">
 					Beranda
 				</a>
+				<a href="{{ route("page.program", ["url" => $anggota->program->url]) }}" class="breadcrumb-item f1-s-3 cl9">
+					{{ $anggota->program->judul }}
+				</a>
 				<span class="breadcrumb-item f1-s-3 cl9">
-					Program
-				</span>
-				<span class="breadcrumb-item f1-s-3 cl9">
-					{{ $program->nama }}
+					{{ $anggota->nama }}
 				</span>
 			</div>
 			
@@ -41,44 +41,36 @@
 	<section class="bg0 p-t-20 p-b-55">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-md-10 col-lg-8 p-b-80">
-					<div class="row">
-						<div class="col-sm-12">
-							<h5 class="f1-l-1 cl2 p-b-30" style="font-size: 24px"> <span class="text-success">{{ $program->nama }}</span></h5>
-							<div class="program-deskripsi">
-								{!! $program->deskripsi !!}
-							</div>
-						</div>
+				<div class="col-md-10 col-lg-8 p-b-80" style="padding: 0 30px 40px">
+					<div class="text-center">
+						<span class="text-success f1-s-10 cl2 hov-cl10 trans-03 text-uppercase">ANGGOTA</span>
+						<h4 style="font-size: 20px" class="f1-l-3 cl2 p-b-16 p-t-16 respon2">
+							{{ $anggota->program->judul }}
+						</h4>
+						<img class="m-t-20" width="150" src="{{ asset("website/images/anggota_program/".$anggota->foto) }}" alt="IMG">
 					</div>
-					<ul class="nav nav-program nav-tabs m-t-20">
-					  <li class="nav-item">
-					    <a class="nav-link" href="{{ route("page.program.artikel", ["id" => $program->id]) }}">ARTIKEL</a>
-					  </li>
-					  <li class="nav-item">
-					    <a class="nav-link active" href="{{ route("page.program.anggota", ["id" => $program->id]) }}">ANGGOTA</a>
-					  </li>
+					<ul class="list-group m-t-20">
+						 <li class="list-group-item row justify-content-start d-flex">
+						 	<div class="col-sm-12 col-md-2"><b>Nama</b></div>
+						 	<div class="col-sm-12 col-md-9">{{ $anggota->nama }}</div>
+						 </li>
+						 <li class="list-group-item row justify-content-start d-flex">
+						 	<div class="col-sm-12 col-md-2"><b>Umur</b></div>
+						 	<div class="col-sm-12 col-md-9">{{ $anggota->umur }} Tahun</div>
+						 </li>
+						 <li class="list-group-item row justify-content-start d-flex">
+						 	<div class="col-sm-12 col-md-2"><b>Pekerjaan</b></div>
+						 	<div class="col-sm-12 col-md-9">{{ $anggota->pekerjaan }}</div>
+						 </li>
+						 <li class="list-group-item row justify-content-start d-flex">
+						 	<div class="col-sm-12 col-md-2"><b>Alamat</b></div>
+						 	<div class="col-sm-12 col-md-9">{{ $anggota->alamat }}</div>
+						 </li>
 					</ul>
-					{{-- Artikel --}}
-					<div class="row m-t-40 anggota-program">
-						@foreach($daftar_anggota as $anggota_program)
-							<div class="d-flex align-items-start p-t-20 p-b-15 how-bor2" style="padding: 20px">
-								<a href="#">
-									<img width="120" src="{{ asset("website/images/anggota_program/".$anggota_program->foto) }}" alt="IMG">
-								</a>
-
-								<div class="tentang" style="padding: 20px">
-									<h4 class="p-b-12" style="font-weight: bold;">
-										{{ $anggota_program->nama }}
-									</h4>
-									<div class="informasi">
-										{!! $anggota_program->informasi !!}
-									</div>
-								</div>
-							</div>
-						@endforeach
+					<div class="deskripsi m-t-20">
+						<h2 class="text-success"><b>Informasi Tambahan :</b></h2>
+						{!! $anggota->informasi !!}
 					</div>
-
-					{{ $daftar_anggota->links() }}
 				</div>
 
 				<div class="col-md-10 col-lg-4 p-b-80">

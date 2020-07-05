@@ -256,7 +256,8 @@
 												@endif
 											@endforeach
 										</div>
-										@if($i % 2 == 0 || $i == count($data["jenis_unit_usaha"]) - 1)
+										<!-- /uji -->
+										@if($i % 2 == 0 || $i == count($data["jenis_unit_usaha"]) - 2)
 											</div> <!-- /row {{ $i }} -->
 										@endif
 									@endif
@@ -315,7 +316,6 @@
 					<a href="{{ route("page.daftar_blog") }}" class="m-b-60 flex-c-c size-a-13 bo-all-1 bocl11 f1-m-6 cl6 hov-btn1 trans-03">
 						Lihat Blog Lainnya
 					</a>
-					</div>
 				</div>
 				<div class="col-sm-12 col-md-4">
 					@include("inc.sidebar")

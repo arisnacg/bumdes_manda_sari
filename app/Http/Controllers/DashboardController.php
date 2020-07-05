@@ -18,4 +18,8 @@ class DashboardController extends Controller
     	$data_jumlah["blog"] = Blog::count();
     	return view("dashboard.index", compact("data_jumlah"));
     }
+
+    public function gantiPassword(){
+    	return view("dashboard.ganti_password");
+    }
 }

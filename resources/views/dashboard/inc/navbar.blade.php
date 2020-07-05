@@ -31,7 +31,7 @@
 				<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{{ asset('admin/img/users/'.Auth::user()->foto_profil) }}"
 					 alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{ Auth::user()->nama }}</b> </a>
 				<ul class="dropdown-menu dropdown-user scale-up">
-					<li><a href="#"><i class="fa fa-key"></i> Change Password</a></li>
+					<li><a href="{{ route("ganti_password") }}"><i class="fa fa-key"></i> Ganti Password</a></li>
 					<li role="separator" class="divider"></li>
 					<li>
 						<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
