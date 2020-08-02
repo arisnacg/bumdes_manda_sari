@@ -25,6 +25,9 @@ Route::group(["prefix" => "dashboard",  "middleware" => "auth"], function () {
 	/////////////////////////////////////////////////////////////////////////////////////
 	//CRUD
 
+	//Anggota tentang kami
+	Route::resource("anggota", "AnggotaController")->names("anggota");
+
 	// Kerjasama
 	Route::resource("kerjasama", "KerjasamaController")->names("kerjasama");
 	//Anggota Program

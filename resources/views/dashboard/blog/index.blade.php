@@ -48,7 +48,7 @@
                                             <a href="{{ route('blog.edit', ['id' => $row->id]) }}" class="btn btn-warning waves-effect waves-light">
                                                 <i class="zmdi zmdi-edit"></i>
                                             </a>
-                                            <button data-id="{{ $row->id }}" class="btn btn-delete-unit-usaha btn-danger waves-effect waves-light"
+                                            <button data-id="{{ $row->id }}" class="btn btn-delete-blog btn-danger waves-effect waves-light"
                                                 type="button"><i class="zmdi zmdi-delete"></i>
                                             </button>
                                             <form id="formDelete{{ $row->id }}" method="POST" action="{{ route('blog.destroy', ['id' => $row->id]) }}">
@@ -83,6 +83,26 @@
 <script src="{{ asset('admin/plugins/bower_components/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('admin/js/custom.js') }}"></script>
 <script>
-    $("#tableTour").DataTable()
+    $("#tableTour").DataTable({
+        "fnDrawCallback": function (oSettings) {
+            //Unit Usaha
+            $(".btn-delete-blog").click(function () {
+                let button = $(this)
+                Swal({
+                    title: "Anda Yakin?",
+                    text: "Blog ini akan terhapus secara permanen",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "Tidak",
+                    confirmButtonColor: "#ea6554",
+                    confirmButtonText: "Ya, lanjutkan!"
+                }).then(function (result) {
+                    if (result.value) {
+                        $("#formDelete" + button.data("id")).submit()
+                    }
+                });
+            })
+        }
+    })
 </script>
 @endsection

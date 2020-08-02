@@ -7,6 +7,8 @@ use App\JenisUnitUsaha;
 use App\UnitUsaha;
 use App\KategoriBlog;
 use App\Blog;
+use Hash;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -21,5 +23,20 @@ class DashboardController extends Controller
 
     public function gantiPassword(){
     	return view("dashboard.ganti_password");
+    }
+
+    public function updatePassword(Request $req){
+        $this->validate($req, [
+            "password_lama" => "required",
+            "password" => "required|min:6|confirmed"
+        ]);
+
+        if(!Hash::check($req->password_lama, Auth::user()->password)){
+            return redirect()->back()->with("error", "Password lama Anda salah");
+        }
+        Auth::user()->update([
+            "password" => bcrypt($req->password)
+        ]);
+        return redirect()->back()->with("success", "Password Anda berhasil diganti");
     }
 }

@@ -62,6 +62,10 @@
 					<li><a href="{{ route('blog.index') }}"><i class="zmdi zmdi-file-text zmdi-hc-fw fa-fw"></i>Blog</a></li>
 				</ul>
 			</li>
+			<li><a href="{{ route("anggota.index") }}" class="waves-effect">
+				<i class="zmdi zmdi-accounts zmdi-hc-fw fa-fw"></i>
+				<span class="hide-menu">Kelola Anggota</span></a>
+			</li>
 			<li><a href="{{ route("webpage") }}" class="waves-effect">
 				<i class="zmdi zmdi-globe zmdi-hc-fw fa-fw"></i>
 				<span class="hide-menu">Halaman Web</span></a>

@@ -82,11 +82,11 @@ class BlogController extends Controller
 
     public function destroy($id){
         $row = Blog::find($id);
-        $nama = $row->nama;
+        $nama = $row->judul;
         File::delete($this->dirGambar.$row->gambar);
         $row->delete();
         return redirect(route("blog.index"))
-            ->with("success", "Unit Usaha : <b>".$nama."</b> berhasil dihapus");
+            ->with("success", "Blog : <b>".$nama."</b> berhasil dihapus");
     }
 
     public function viewUpdateDeskripsi($id){

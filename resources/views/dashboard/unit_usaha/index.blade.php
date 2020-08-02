@@ -95,6 +95,26 @@
 <script src="{{ asset('admin/plugins/bower_components/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('admin/js/custom.js') }}"></script>
 <script>
-    $("#tableTour").DataTable()
+    $("#tableTour").DataTable({
+        "fnDrawCallback": function (oSettings) {
+            //Unit Usaha
+            $(".btn-delete-unit-usaha").click(function () {
+                let button = $(this)
+                Swal({
+                    title: "Anda Yakin?",
+                    text: "Unit usaha ini akan terhapus secara permanen",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "Tidak",
+                    confirmButtonColor: "#ea6554",
+                    confirmButtonText: "Ya, lanjutkan!"
+                }).then(function (result) {
+                    if (result.value) {
+                        $("#formDelete" + button.data("id")).submit()
+                    }
+                });
+            })
+        }
+    })
 </script>
 @endsection
